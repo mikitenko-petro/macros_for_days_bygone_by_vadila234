@@ -1,7 +1,6 @@
 import pyautogui
 import random
 from .capcha_swapper import capcha_swapper
-from PIL import ImageGrab
 import os 
 
 test = False
