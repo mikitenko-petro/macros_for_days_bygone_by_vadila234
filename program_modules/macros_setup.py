@@ -3,39 +3,44 @@ import random
 from .capcha_swapper import capcha_swapper
 import os 
 
-test = False
-make_screenshoots = False
-
-def auto_rewind_manager(image_name_list : list, button_location_left_list : list, button_location_top_list : list, root):
+def auto_rewind_manager(image_name_list : list, button_location_left_list : list, button_location_top_list : list):
     button_location = 0
     button_location_left_param = 0
     button_location_top_param = 0
     turn = 0
-    is_capcha = ""
+    is_capcha = False
 
     while turn < len(image_name_list):
         if turn == 0:
             try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/select.png'), confidence=0.5)
-                capcha_swapper()
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/images_to_find/exit2.png'), confidence=0.8)
+                
+                pyautogui.moveTo(
+                capcha_location.left + capcha_location.width/2 + random.randint(-3, 3),
+                capcha_location.top + capcha_location.height/2 + random.randint(-3, 3))
+
+                pyautogui.click()
+                is_capcha = True
             except:
-                is_capcha = ""
+                is_capcha = False
+
+            try:
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/select.png'), confidence=0.8)
+                capcha_swapper()
+                is_capcha = True
+            except:
+                is_capcha = False
             
             try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap_circles.png'), confidence=0.5)
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap_items.png'), confidence=0.8)
                 capcha_swapper()
-                is_capcha = "tap circles"
+                is_capcha = True
             except:
-                is_capcha = ""
+                is_capcha = False
+
             
-            try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap_items.png'), confidence=0.5)
-                capcha_swapper()
-                is_capcha = "tap items"
-            except:
-                is_capcha = ""
         
-        if is_capcha == "":
+        if is_capcha == False:
             try:
                 button_location = pyautogui.locateOnScreen(os.path.abspath(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.9)
                 

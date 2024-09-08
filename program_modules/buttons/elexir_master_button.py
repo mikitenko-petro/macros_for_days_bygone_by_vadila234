@@ -10,6 +10,6 @@ def elexir_master_button(root):
         master = root,
         text = "elexir master farm",
         width = 25,
-        command = lambda: auto_rewind_manager(image_name_list, location_left_list, location_top_list, root))
+        command = lambda: auto_rewind_manager(image_name_list, location_left_list, location_top_list))
     
     return button

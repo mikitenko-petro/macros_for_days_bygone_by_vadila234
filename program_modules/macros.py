@@ -10,7 +10,7 @@ def macros(image_name_list : list, button_location_left_list : list, button_loca
 
     while turn < len(image_name_list):
         try:
-            button_location = pyautogui.locateOnScreen(os.path.abspath(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.99)
+            button_location = pyautogui.locateOnScreen(os.path.abspath(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.9)
             
             if button_location_left_list[turn] == "":
                 button_location_left_param = button_location.width/2
