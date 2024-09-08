@@ -32,7 +32,7 @@ def auto_rewind_manager(image_name_list : list, button_location_left_list : list
                 is_capcha = False
             
             try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap_items.png'), confidence=0.8)
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap.png'), confidence=0.8)
                 capcha_swapper()
                 is_capcha = True
             except:
