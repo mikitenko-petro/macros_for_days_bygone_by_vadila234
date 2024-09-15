@@ -2,6 +2,7 @@ import pyautogui
 import random
 from .capcha_swapper import capcha_swapper
 import os 
+import cv2
 
 def auto_rewind_manager(image_name_list : list, button_location_left_list : list, button_location_top_list : list):
     button_location = 0
@@ -10,10 +11,15 @@ def auto_rewind_manager(image_name_list : list, button_location_left_list : list
     turn = 0
     is_capcha = False
 
+    try:
+        print("OpenCV imported successfully:", cv2.__version__)
+    except ImportError as e:
+        print(e)
+
     while turn < len(image_name_list):
         if turn == 0:
             try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/images_to_find/exit2.png'), confidence=0.8)
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/images_to_find/exit2.png'), confidence=0.6)
                 
                 pyautogui.moveTo(
                 capcha_location.left + capcha_location.width/2 + random.randint(-3, 3),
@@ -32,14 +38,12 @@ def auto_rewind_manager(image_name_list : list, button_location_left_list : list
                 is_capcha = False
             
             try:
-                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap.png'), confidence=0.8)
+                capcha_location = pyautogui.locateOnScreen(os.path.abspath(f'images/capcha_images/tap.png'), confidence=0.7)
                 capcha_swapper()
                 is_capcha = True
             except:
                 is_capcha = False
-
             
-        
         if is_capcha == False:
             try:
                 button_location = pyautogui.locateOnScreen(os.path.abspath(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.9)

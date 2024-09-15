@@ -60,6 +60,7 @@ networkx==3.3
 numpy==1.24.3
 oauthlib==3.2.2
 onnxruntime==1.19.0
+opencv-python-headless==4.10.0.84
 opt-einsum==3.3.0
 optree==0.12.1
 packaging==23.2
