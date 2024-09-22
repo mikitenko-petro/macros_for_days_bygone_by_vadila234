@@ -1,16 +1,18 @@
 import pyautogui
 import random
 import os 
+from .search_image import search_image
 
 def macros(image_name_list : list, button_location_left_list : list, button_location_top_list : list, loop : bool):
     button_location = 0
     button_location_left_param = 0
     button_location_top_param = 0
     turn = 0 
+    pyautogui.FAILSAFE = False
 
     while turn < len(image_name_list):
         try:
-            button_location = pyautogui.locateOnScreen(os.path.abspath(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.9)
+            button_location = pyautogui.locateOnScreen(search_image(f"images/images_to_find/{image_name_list[turn]}.png"), confidence=0.9)
             
             if button_location_left_list[turn] == "":
                 button_location_left_param = button_location.width/2
