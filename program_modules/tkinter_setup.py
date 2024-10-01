@@ -1,22 +1,37 @@
-import tkinter
-from .buttons.rewind_button import rewind_button
-from .buttons.elexir_master_button import elexir_master_button
-from .search_image import search_image
-from PIL import Image, ImageTk
+import customtkinter
+import json
+from .search_path import search_path
+from .macros_manager import auto_rewind, elexir_master_farm, stop
 
-main = tkinter.Tk()
-main.title("macros_for_days_bygone_by_vadila234ua")
-main.geometry("600x600+1500+850")
-main.minsize(600,600)
-main.maxsize(600,600)
-main.attributes('-topmost',True)
-main.iconphoto(False, ImageTk.PhotoImage(Image.open(search_image("images/cosmetic/icon.png"))))
+class App(customtkinter.CTk):
+    def __init__(self, title : str):
+        super().__init__()
 
-button = rewind_button(main)
-button.place(x = 200,y = 50)
+        self.title(title)
+        self.geometry("600x600+1500+850")
+        self.grid_columnconfigure((2,1),weight=1)
+        self.iconbitmap(search_path("static/images/cosmetic/icon.ico"))
+        self.attributes('-topmost',True)
 
-button2 = elexir_master_button(main)
-button2.place(x = 200,y = 100)
+        self.auto_rewind_button = customtkinter.CTkButton(self, text = "auto rewind", command = auto_rewind)
+        self.auto_rewind_button.grid(row=0, column=0, padx=20, pady=20, sticky="ew")
 
+        self.elexir_master_farm_button = customtkinter.CTkButton(self, text = "elexir master farm", command = elexir_master_farm)
+        self.elexir_master_farm_button.grid(row=1, column=0, padx=20, pady=20, sticky="ew")
 
-main.mainloop()
+        self.stop_button = customtkinter.CTkButton(self, text = "stop", command = stop)
+        self.stop_button.grid(row=2, column=0, padx=20, pady=20, sticky="ew")
+
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
+        self.mainloop()
+
+    def on_close(self):
+        with open(file = search_path('static/json/status.json'), encoding = 'utf-8', mode= 'w') as file:
+            status = {"status": "closed"}
+            json.dump(status, file)
+            
+        self.destroy()
+
+def frame_start():
+    main = App(title = "macros_for_days_bygone_by_vadila234ua")
