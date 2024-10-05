@@ -17,10 +17,10 @@ _Мій проект - це один з можливих способів авт
 - [Searching path](#searching-path)
   
 # Technologies librares and languages І used
-1. >Python - I used Python for automatization and GUI.
-2. >pyautogui - I used this Python library for screen trecking and clicking.
-3. >customtkinter - I used this Python library for grafical UI.
-4. >treading - I used this Python library for parallel processes.
+1. >Python - I used Python for automatization and GUI/Я використовував Python для автоматизації та інтерфейсу.
+2. >pyautogui - I used this Python library for screen trecking and clicking/Я використовував цю бібліотеку Python для відстеження та клацання по екрану.
+3. >customtkinter - I used this Python library for grafical UI/Я використовував цю бібліотеку Python для графічного інтерфейсу.
+4. >treading - I used this Python library for parallel processes/Я використовував цю бібліотеку Python для паралельних процесів.
 
 ---
 
@@ -37,7 +37,7 @@ _Мій проект - це один з можливих способів авт
 
 ### process.py
 
-1. __Using library threading for spliting main cycle and GUI because if we bind cycle and tkinter window will be freezed while macros is working__
+1. __Using library threading for spliting main cycle and GUI because if we bind cycle and tkinter window will be freezed while macros is working/Використання бібліотеки threading для розділення основного циклу та графічного інтерфейсу користувача, оскільки якщо ми прив’яжемо цикл і вікно tkinter то воно буде заморожено, поки макрос працює__
 
 ```python
 import threading
@@ -59,7 +59,7 @@ macros.join()
 
 ### tkinter_setup.py
 
-2. __Using library customtkinter for creating GUI__
+2. __Using library customtkinter for creating GUI/Використання бібліотеки customtkinter для створення GUI__
 
 ```python
 import customtkinter
@@ -105,7 +105,7 @@ def frame_start():
 
 ### macros_manager.py
 
-3. __creating main loop for managing which mode is using now__
+3. __Сreating main loop for managing which mode is using now/Створення основного циклу для керування тим, який режим зараз використовується__
 
 ```python
 import json
@@ -169,7 +169,7 @@ def macros_manager():
 
 ### Macros_setup.py
 
-4. __creating a function which searching for images and clicking on it in right turn. I use library pyautogui for this__
+4. __creating a function which searching for images and clicking on it in right turn. I use library pyautogui for this/створення функції, яка шукає зображення та натискає на нього у потрібний момент. Для цього я використовую бібліотеку pyautogui__
 
 ```python
 import pyautogui
@@ -251,7 +251,7 @@ def auto_rewind_manager(image_name_list : list, button_location_left_list : list
 
 ### search_path.py
 
-5. __creating a function which make dynamic path to files(photos, json)__
+5. __creating a function which make dynamic path to files(photos, json)/створення функції, яка створює динамічний шлях до файлів (фото, json)__
 
 ```python
 import os
